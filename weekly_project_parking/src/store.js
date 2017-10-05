@@ -1,7 +1,8 @@
 import { createStore } from 'redux';
 
+// Create reducer function
 function reducer (state, action) {
-    console.log(action);
+    // console.log(action);
     if (action.type === 'GET_LOTS') {
         return {
             parkingLots: action.payload,

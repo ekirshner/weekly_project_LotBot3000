@@ -2,59 +2,42 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-//Use this to connect redux and react
+// Connect redux and react
 import { connect } from 'react-redux';
 
-//Import the action
-import { getLots } from './actions';
+import search from './Search.png';
+
+import Transactions from './Transactions';
 
 
-export class Home extends Component {
 
-    componentDidMount() {
-        // this.props.getLots();
-    }
+class Home extends Component {
     
     render() {
-        // const lotsArr = this.props.lots.map((lot, index) => {
-        //     return <li key={ index }> { lot.id } { lot.spaces.length }</li>
-        // })
-       
-
-        // console.log(this.props.lots)
+        // Loop over lots and display the lot number & number of parking spaces
+        const lotsArr = this.props.lots.map((lot, index) => {
+            return <li key={ index }> <Link to={'/lots/' + index}> <img className="search-icon" src={ search } /> Lot Number:<span> { lot.id } </span> ({ lot.spaces.length } spaces)</Link> </li>
+        })
 
         return (
-            <div>
-                <Link to='/details' > Hey I'm home! </Link>
-                 {/* { lotsArr }  */}
+            <div className="home-component">
+                <p> Current Lots </p>
+                <ul className="lots-home">
+                { lotsArr } 
+                </ul> 
             </div>
         );
     }
 }
 
 
-function state2Props(state) { //create a state called lots that gets its data from state.parkingLots
-    console.log('oh hi');
+// Create a state called lots that gets its data from state.parkingLots  
+function state2Props(state) { 
     return {
         lots: state.parkingLots,
     };
 }
 
-function dispatch2Props(dispatch) {
-    console.log('d2p')
-    return {
-        perfect() {
-            console.log('yaaaaaaay');
-        },
-        getLots() {
-            console.log('gettin some lots')
-            fetch('https://lotbot3000.herokuapp.com/lots')
-                .then(res => res.json())
-                .then(response => {
-                    dispatch(getLots(response));
-                });
-        },
-    };
-}
 
-export default connect(state2Props, dispatch2Props)(Home);
+
+export default connect(state2Props, null)(Home);
