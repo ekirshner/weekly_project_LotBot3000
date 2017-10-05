@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import search from './Search.png';
-
 import Transactions from './Transactions';
 
 
@@ -21,7 +20,7 @@ class Home extends Component {
 
         return (
             <div className="home-component">
-                <p> Current Lots </p>
+                <h3> Current Lots </h3>
                 <ul className="lots-home">
                 { lotsArr } 
                 </ul> 

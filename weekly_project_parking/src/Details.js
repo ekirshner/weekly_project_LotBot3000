@@ -30,7 +30,6 @@ class Details extends Component {
     handlePark(index, occupancyStatus) {
         // If the spot is vacant, do the following:
         if (occupancyStatus === null) {
-            console.log(index + 'vacant')
 
             this.setState({
                 ModalCheckInVisable: false,
@@ -39,20 +38,28 @@ class Details extends Component {
 
         //If the spot is occupied, do the following:
         } else {
-            console.log(index + 'occupado')
-
             this.setState({
                 ModalCheckOutVisable: false,
                 Space: index,
             });
+
+            // ******************************************
+            // ANOTHER EFFING FETCH REQUEST GOES HERE
         };
     }
 
+// When a user clicks the X button on the modal, reset the visibility
+    handleCloseClick() {
+        this.setState ({
+            ModalCheckInVisable: true,
+            ModalCheckOutVisable: true,
+            Space: null,
+        });
+    }
+    
 // When a user clicks the submit button from the ModalCheckIn, do the following:
     handleSubmission (licensePlate) {
-          console.log(this.props.match.params.id)
-          console.log(this.state.Space)
-          
+
         // Send a POST request to the API to "park a car"
         fetch('https://lotbot3000.herokuapp.com/lots/' + this.props.match.params.id  + '/' + this.state.Space, {
             method: 'POST',
@@ -77,6 +84,20 @@ class Details extends Component {
 
 // When a user clicks the submit button from the ModalCheckOut, do the following:
     handleSubmissionCheckout () {
+
+        // Send a PUT request to the API to "remove a car"
+        fetch('https://lotbot3000.herokuapp.com/lots/' + this.props.match.params.id  + '/' + this.state.Space, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },   
+        // Once the request has completed, call the getLots GET request function again to repopulate the data    
+        }).then(() => {
+            this.props.getLots()
+        });
+
+        // Reset the state
         this.setState ({
             ModalCheckOutVisable: true,
             Space: null,
@@ -116,15 +137,15 @@ class Details extends Component {
                 <div className="details-component">
                      <div className="modals">
                         <p hidden={this.state.ModalCheckInVisable}>
-                            <ModalCheckIn onButtonClick={ this.handleSubmission }/>
+                            <ModalCheckIn onButtonClick={ this.handleSubmission } onCloseClick={() => this.handleCloseClick()}/>
                         </p>
                         <p hidden={this.state.ModalCheckOutVisable}>
-                            <ModalCheckOut onButtonClick={ this.handleSubmissionCheckout }/>
+                            <ModalCheckOut onButtonClick={ this.handleSubmissionCheckout } onCloseClick={() => this.handleCloseClick()}/>
                         </p>
                     </div>
 
                     <p> Detailed View of Lot #{ this.props.lots[id].id }</p>
-                    <p> Total: { this.props.lots[id].spaces.length } spaces</p>
+                    <p> Total Spaces: { this.props.lots[id].spaces.length }   |   Hourly Price: $5</p>
                    
                     <div className="parking-lot">
                         { parkingSpots }

@@ -32,7 +32,6 @@ class App extends Component {
         <nav>
             <ul>
               <li><Link to="/transactions" > View Transactions </Link></li> 
-              {/* <li><Link to="/details" > Lot Overview (Details) </Link></li>    */}
               <li><Link to="/lots" > View All Lots </Link></li> 
             </ul>
         </nav>
@@ -40,7 +39,6 @@ class App extends Component {
         <main>
           <Switch>
             <Route path="/transactions" component={ Transactions } />
-            {/* <Route path="/lots/:id" component={ Details } />   */}
             <Route path="/lots/:id" component={ Details } />  
             <Route path="/lots" component={ Home } />
           </Switch>

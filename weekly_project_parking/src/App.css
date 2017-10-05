@@ -9,7 +9,6 @@ body {
 }
 
 .App-header {
-  /* background-color: #6B6D6D; */
   background-color: #222;
   height: 30px;
   padding: 20px;
@@ -29,7 +28,6 @@ body {
 /* NAVIGATION  ***********/
 nav {
   background-color: #F8F8F8;
-  /* box-shadow: 2px 2px 10px #888888; */
   box-shadow: 2px 2px 10px #222;
 }
 
@@ -67,7 +65,6 @@ nav a:hover {
 .home-component {
   background-color: #F8F8F8;
   border-radius: 5px;
-  /* box-shadow: 2px 2px 10px #888888; */
   box-shadow: 2px 2px 10px #222;
   padding: 10px;
   margin: 0 25% 25% 25%;
@@ -111,7 +108,6 @@ span {
 /* LOT DETAILS  ************/
 .details-component {
   background-color: #F8F8F8; 
-  /* box-shadow: 2px 2px 10px #888888;*/
   box-shadow: 2px 2px 10px #222;
   margin: 0 8% 5% 8%;
   padding: 2px;
@@ -148,21 +144,23 @@ span {
 
 
  /* MODAL POP UPS  *******/
-.modal-checkin {
-   background-color: #F8F8F8; 
-  /* background-color: white; */
+.modal-checkin-surround {
+  background-color: #F8F8F8; 
   box-shadow: 2px 2px 10px #222;
   text-align: center;
   margin-left: 30%;
   margin-right: 30%; 
   width: 200px;
   padding: 2%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: fixed;
   z-index: 1;
   border-radius: 2px; 
+}
+
+.modal-checkin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-checkin input {
@@ -201,15 +199,43 @@ span {
   margin-bottom: 1%;
 }
 
+.modal-checkin-surround .close {
+  text-align: center; 
+  font-size: 6px;
+  margin: 0;
+  border: .5px solid lightgrey;
+  width: 6px;
+  color: grey;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
 
 /* TRANSACTIONS COMPONENT  ********/
-
 .transactions-component {
   background-color: #F8F8F8; 
-  /* box-shadow: 2px 2px 10px #888888; */
   box-shadow: 2px 2px 10px #222;
   margin: 0 20% 5% 20%;
   min-height: 100px;
   padding: 2px;
   border-radius: 5px;
+}
+
+th {
+  border-bottom: .5px dotted lightgray;
+  font-weight: lighter;
+  font-size: 13px;
+  width: 15%;
+  color:  #222;
+  opacity: .9;
+}
+
+.transactions-header th {
+   padding-bottom: 5px;
+}
+
+h3 {
+  color: #222;
 }
