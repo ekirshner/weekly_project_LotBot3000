@@ -26,12 +26,12 @@ class Transactions extends Component {
        const entries = this.state.entries.map((entry, index) => {
            const due = Math.round(parseInt(entry.timeDiffInSec)/3600 * 5);
 
-           return <tr key={index} className="transactions-data">
-                     <th>#{entry.id}</th>
-                     <th>#{entry.lotId}</th>
-                     <th>#{entry.spaceIndex}</th>  
-                     <th>#{entry.vehicle.licensePlate}</th>
-                     <th>${due} </th> 
+           return <tr key={ index } className="transactions-data">
+                     <th>#{ entry.id }</th>
+                     <th>#{ entry.lotId }</th>
+                     <th>#{ entry.spaceIndex }</th>  
+                     <th>#{ entry.vehicle.licensePlate }</th>
+                     <th>${ due } </th> 
                  </tr>
         })
 

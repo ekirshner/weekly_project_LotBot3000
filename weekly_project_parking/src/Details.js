@@ -42,9 +42,6 @@ class Details extends Component {
                 ModalCheckOutVisable: false,
                 Space: index,
             });
-
-            // ******************************************
-            // ANOTHER EFFING FETCH REQUEST GOES HERE
         };
     }
 
@@ -156,7 +153,7 @@ class Details extends Component {
         // If the lots have not loaded yet, return nothing
         } else {
             return <div></div>;
-        }
+        };
     }
 }
 
@@ -178,7 +175,7 @@ function dispatch2Props(dispatch) {
                 .then(response => {
                     dispatch(getLots(response));
                 });
-        },
+        }
     };
 }
 
